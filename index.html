@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Space Attack</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #080c18; color: #9caecb; font: 14px monospace; display: grid; place-content: center; min-height: 100vh; text-align: center; }
+      h1 { color: #69f5dc; font-size: 20px; letter-spacing: 6px; }
+      #game { width: min(800px, 96vw); height: min(600px, 75vh); }
+      canvas { display: block; border: 1px solid #243450; }
+      p { font-size: 12px; }
+    </style>
+  </head>
+  <body>
+    <h1>SPACE ATTACK</h1>
+    <div id="game"></div>
+    <p>Move: WASD / Arrow keys · Fire: Space · Start / Restart: Enter</p>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
