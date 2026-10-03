@@ -6,17 +6,26 @@
     <title>Space Attack</title>
     <style>
       * { box-sizing: border-box; }
-      body { margin: 0; background: #080c18; color: #9caecb; font: 14px monospace; display: grid; place-content: center; min-height: 100vh; text-align: center; }
-      h1 { color: #69f5dc; font-size: 20px; letter-spacing: 6px; }
-      #game { width: min(800px, 96vw); height: min(600px, 75vh); }
-      canvas { display: block; border: 1px solid #243450; }
-      p { font-size: 12px; }
+      body { margin: 0; background: #000; color: #727272; font: 11px monospace; display: grid; place-content: center; min-height: 100vh; text-align: center; }
+      #game { width: min(100vw, calc((100dvh - 36px) * 800 / 680)); aspect-ratio: 800 / 680; }
+      canvas { display: block; width: 100% !important; height: 100% !important; image-rendering: pixelated; filter: url(#tv-softness); }
+      p { margin: 8px 4px; font-size: clamp(8px, 1.5vw, 11px); }
     </style>
   </head>
   <body>
-    <h1>SPACE ATTACK</h1>
+    <svg width="0" height="0" aria-hidden="true" style="position: absolute; pointer-events: none;">
+      <defs>
+        <!-- At 800 x 680: 1.25 x 0.6px softness and 3.2 x 1px color spread.
+             Bounding-box units keep the effect proportional when the game resizes. -->
+        <filter id="tv-softness" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.0015625 0.0008824" result="soft" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.004 0.0014706" result="glow" />
+          <feComposite in="soft" in2="glow" operator="arithmetic" k1="0" k2="0.9" k3="0.18" k4="0" />
+        </filter>
+      </defs>
+    </svg>
     <div id="game"></div>
-    <p>Move: WASD / Arrow keys · Fire: Space · Start / Restart: Enter</p>
+    <p>Move: A / D or ← / → · Hold Space to fire · Start / Restart: Enter</p>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
